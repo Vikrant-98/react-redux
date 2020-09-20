@@ -1,17 +1,29 @@
 import React from 'react';
-import Books from './component/books';
-import {Provider} from 'react-redux';
-import store from './redux/store/store'
-import './App.css';
+import { connect } from 'react-redux';
+import { updateName } from './redux/action/action'
 
-function App() {
+function App(props) {
+  console.log(props);
   return (
-    <Provider store={store}>
-    <div className="App">
-      <Books/>
+    <div>
+      <h1>I am in {props.myName}</h1>
+      <input type='text' onChange={(e)=>{props.changeName(e.target.value)}}/>
     </div>
-    </Provider>
   );
 }
 
-export default App;
+const mapStateToProps=(state)=>{
+  return{
+    myName:state.name
+  }
+}
+
+const mapDispatchToProps=(dispatch)=>{
+  
+  return{
+    changeName:(name)=>{dispatch(updateName(name))}
+  }
+}
+
+
+export default connect(mapStateToProps,mapDispatchToProps)(App);

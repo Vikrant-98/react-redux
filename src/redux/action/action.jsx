@@ -1,7 +1,8 @@
-import {BUY_BOOK} from './declaration/type';
+export const updateName = (name) =>{
 
-export const buyBook=()=>{
-    return {
-        type:BUY_BOOK
-    }
+    return({
+        type:'change_name',
+        payload:name
+    })
+
 }
